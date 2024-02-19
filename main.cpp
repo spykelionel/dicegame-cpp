@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
+#include <random>
+#include <ctime>
 
 using namespace std;
 
@@ -19,16 +21,29 @@ class Player
 private:
     string name;
     vector<string> players;
+    int points;
 
 public:
     Player(string name) : name(name) {}
-    Player() {}
+    Player()
+    {
+        points = 100;
+    }
     virtual void play()
     {
         cout << "Player " << name << " is playing." << endl;
     }
     void bet(int x)
     {
+        if (x <= points)
+        {
+            cout << "Player placed a bet of " << x << endl;
+            points -= x;
+        }
+        else
+        {
+            cout << "Not enough points to place bet" << endl;
+        }
     }
 
     void addPlayer(string name)
@@ -40,6 +55,8 @@ public:
     {
         return players;
     }
+
+    int getPoints() { return points; }
 };
 
 class Human : public Player
@@ -66,24 +83,39 @@ private:
     int faceValue;
 
 public:
-    void roll() {}
+    void roll()
+    {
+        faceValue = getRandomNumber();
+    }
     int getFaceValue()
     {
         return faceValue;
     }
+    int getRandomNumber()
+    {
+        mt19937 rng(time(0));
+        uniform_int_distribution<int> distribution(1, 6);
+        return distribution(rng);
+    }
+};
+
+class DiceGame
+{
+private:
+    Player player;
+    Die die;
+
+public:
+    void init()
+    {
+        // default set player as human
+        player = Human("Lionel");
+    }
+    void displayStats() {}
 };
 
 int main()
 {
-    System sys;
-    Player player;
-    sys.play();
-    player.addPlayer("Lionel");
-    player.addPlayer("Spyke");
 
-    for (int i = 0; i < player.getPlayers().size(); i++)
-    {
-        cout << player.getPlayers().at(i) << endl;
-    }
     return 0;
 }
