@@ -118,8 +118,8 @@ public:
 class DiceGame
 {
 private:
-    Player player;
-    Die die;
+    Player *player;
+    Die *die;
 
 public:
     void init()
