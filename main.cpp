@@ -24,7 +24,10 @@ private:
     int points;
 
 public:
-    Player(string name) : name(name) {}
+    Player(string name) : name(name)
+    {
+        points = 100;
+    }
     Player()
     {
         points = 100;
@@ -56,7 +59,7 @@ public:
         return players;
     }
 
-    int getPoints() { return points; }
+    int getPoints() const { return points; }
 };
 
 class Human : public Player
@@ -116,6 +119,11 @@ public:
 
 int main()
 {
-
+    Player player;
+    cout << "Before placing a bet" << endl;
+    cout << player.getPoints() << endl;
+    player.bet(58);
+    cout << "After placing a bet." << endl;
+    cout << player.getPoints() << endl;
     return 0;
 }
