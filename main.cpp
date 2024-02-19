@@ -91,8 +91,14 @@ class Die
 {
 private:
     int faceValue;
+    static mt19937 rng;
+    static uniform_int_distribution<int> distribution;
 
 public:
+    Die()
+    {
+        rng.seed(time(0));
+    }
     void roll()
     {
         faceValue = getRandomNumber();
