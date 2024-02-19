@@ -62,6 +62,11 @@ public:
     }
 
     int getPoints() const { return points; }
+    void addPoints(int point)
+    {
+        points += point;
+    }
+    string getName() { return name; }
 };
 
 class Human : public Player
