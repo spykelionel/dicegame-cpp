@@ -10,6 +10,8 @@ using namespace std;
 class Player;
 class Human;
 class System;
+class DiceGame;
+class Die;
 
 struct CurrentPlayer
 {
