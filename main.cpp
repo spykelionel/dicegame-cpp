@@ -19,18 +19,17 @@ struct CurrentPlayer
     string name;
 };
 
-struct Point
+struct Turn
 {
     int turn;
     int points;
-    string name;
 };
 class Player
 {
 private:
     string name;
-    vector<Point> players;
     int points;
+    vector<Turn> accumulatedPoints;
 
 public:
     Player(string name) : name(name)
