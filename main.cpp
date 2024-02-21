@@ -209,6 +209,42 @@ public:
 
         die = new Die();
 
+        string name = "";
+        char option = ' ';
+
+        // logic for playing game.
+        bool quit = false;
+        int choice = 0, turn = 0, i = 0;
+
+        while (option != 'q')
+        {
+
+            displayOptions();
+            cin >> option;
+            switch (option)
+            {
+            case 'r':
+                // register player
+                cout << "Enter player's name: ";
+                cin >> name;
+                registerPlayer(name);
+                break;
+            case 's':
+                // show statistics for the game.
+                displayStats();
+                break;
+            case 'p':
+                // play a game
+                playGame();
+                break;
+            case 'q':
+                option = 'q';
+                break;
+            default:
+                cout << "Invalid Option.";
+                break;
+            }
+        }
         bool quit = false;
         int choice = 0, turn = 0, i = 0;
         while (!quit)
