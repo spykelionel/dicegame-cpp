@@ -279,7 +279,17 @@ public:
             i++;
         }
     }
-    void displayStats(Player *player)
+    void displayOptions()
+    {
+        cout << "r. Register a new player." << endl;
+        cout << "s. Show dashboard." << endl;
+        cout << "p. Play a game. If only one human is available. The game plays against the Computer." << endl;
+        cout << "q. Quit." << endl;
+    }
+    void registerPlayer(string name)
+    {
+        players.push_back((new Human(name)));
+    }
     {
         for (auto p : player->getPlayers())
         {
