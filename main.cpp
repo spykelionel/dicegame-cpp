@@ -245,28 +245,36 @@ public:
                 break;
             }
         }
+    void playGame()
+    {
         bool quit = false;
         int choice = 0, turn = 0, i = 0;
+        cout << "Playing the game......" << endl;
         while (!quit)
         {
-            turn++;
-            cout << "Player " << i % 2 + 1 << " roll a dice. \nRolling a die.." << endl;
-            die->roll();
-            const int faceValue = die->getFaceValue();
-            die->roll();
-            const int faceValue2 = die->getFaceValue();
-            die->roll();
-            const int faceValue3 = die->getFaceValue();
-            player->addPoints(faceValue);
-            player->setPoints(player->getName(), turn, (faceValue + faceValue2 + faceValue3));
-            cout << "Rolled a die with value: " << faceValue << " " << faceValue2 << " " << faceValue3 << endl;
-            cout << "Roll again? 0. NO, 1. YES: ";
+
+            if (players.size() == 0)
+            {
+                cout << "Players must be at least 2." << endl;
+                break;
+            }
+            else if (players.size() < 2 && players.size() >= 1)
+            {
+                cout << "You are now playing with the computer." << endl;
+                players.push_back((new System()));
+            }
+            if (i % 2 == 0)
+                turn++;
+            cout << "Player " << i % 2 + 1 << " " << players.at(i % 2)->getName() << ".\nRolling a die.." << endl;
+            cout << "Enter 1 to roll: ";
             cin >> choice;
+            die->roll(players.at(i % 2), turn);
             if (choice == 0)
             {
                 quit = true;
-                // cout << "Points" << player->getPoints() << endl;
-                displayStats(player);
+                Player **p = Util::convertVectorToArray(players);
+                displayStats(p, players.size());
+                delete[] p;
             }
             i++;
         }
