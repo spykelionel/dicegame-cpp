@@ -63,15 +63,14 @@ public:
         points += point;
     }
     string getName() { return name; }
-    void setPoints(string name, int turn, int points)
+    void setTurn(Turn turn)
     {
-        Point p;
-        p.name = name;
-        p.turn = turn;
-        p.points = points;
-        players.push_back(p);
+        accumulatedPoints.push_back(turn);
     }
-    vector<Point> getPlayers() const { return players; }
+    vector<Turn> getAccumumaltedPoints()
+    {
+        return accumulatedPoints;
+    }
 };
 
 class Human : public Player
