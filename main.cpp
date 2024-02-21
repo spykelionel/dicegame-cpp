@@ -127,10 +127,24 @@ private:
 
 public:
     Die() {}
+    void roll(Player *player, int turnNumber)
     {
         try
         {
-            faceValue = rand() % 6 + 1;
+            Turn turn;
+            int value = 0;
+            // role a die 3 times.
+            for (int i = 1; i <= 3; i++)
+            {
+                string suffix = Util::getOrdinalSuffix(i);
+                int fv = rand() % 6 + 1;
+                value += fv;
+                cout << "Rolling " << i << suffix << " Time."
+                     << " Face Value: " << fv << endl;
+            }
+            turn.points = value;
+            turn.turn = turnNumber;
+            player->setTurn(turn);
         }
         catch (const exception &e)
         {
