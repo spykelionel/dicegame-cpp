@@ -191,34 +191,15 @@ public:
     }
     void init()
     {
-        /**
-         * 1. Get player name.
-         * 2. Ask player to roll a die.
-         * 3. Add the points to player's points
-         *
-         * Part 2:
-         * 1. Ask player to roll a die.
-         * 2. Ask system to roll a die too.
-         * 3. Add player's points to the one who won.
-         */
-
-        // default set player as human
-        // player = new Human("Lionel");
-        // sys = new System();
-        player = new Human("Lionel");
-
         die = new Die();
 
         string name = "";
         char option = ' ';
-
-        // logic for playing game.
         bool quit = false;
         int choice = 0, turn = 0, i = 0;
 
         while (option != 'q')
         {
-
             displayOptions();
             cin >> option;
             switch (option)
@@ -245,6 +226,8 @@ public:
                 break;
             }
         }
+    }
+
     void playGame()
     {
         bool quit = false;
@@ -266,9 +249,17 @@ public:
             if (i % 2 == 0)
                 turn++;
             cout << "Player " << i % 2 + 1 << " " << players.at(i % 2)->getName() << ".\nRolling a die.." << endl;
-            cout << "Enter 1 to roll: ";
-            cin >> choice;
-            die->roll(players.at(i % 2), turn);
+            if (players.at(i % 2)->getName() == "Computer")
+            {
+                die->roll(players.at(i % 2), turn);
+            }
+            else
+            {
+                cout << "Enter 1 to roll: ";
+                cin >> choice;
+                die->roll(players.at(i % 2), turn);
+            }
+
             if (choice == 0)
             {
                 quit = true;
@@ -279,17 +270,22 @@ public:
             i++;
         }
     }
+
     void displayOptions()
     {
+        cout << endl;
         cout << "r. Register a new player." << endl;
         cout << "s. Show dashboard." << endl;
         cout << "p. Play a game. If only one human is available. The game plays against the Computer." << endl;
         cout << "q. Quit." << endl;
+        cout << endl;
     }
+
     void registerPlayer(string name)
     {
         players.push_back((new Human(name)));
     }
+
     void displayStats()
     {
         cout << endl;
@@ -300,6 +296,7 @@ public:
         }
         cout << endl;
     }
+
     void displayStats(Player *player[], int size)
     {
         int totalPoints = 0;
@@ -309,8 +306,8 @@ public:
             cout << "Displaying points for: " << player[i]->getName() << endl;
             for (auto p : player[i]->getAccumumaltedPoints())
             {
-                string suffix = Util::getOrdinalSuffix(i);
-                cout << suffix << p.turn << " Turn."
+                string suffix = Util::getOrdinalSuffix(p.turn);
+                cout << p.turn << suffix << " Turn."
                      << " Total points: " << p.points << endl;
                 totalPoints += p.points;
             }
