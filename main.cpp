@@ -126,11 +126,7 @@ private:
     int faceValue;
 
 public:
-    Die()
-    {
-        faceValue = 13;
-    }
-    void roll()
+    Die() {}
     {
         try
         {
