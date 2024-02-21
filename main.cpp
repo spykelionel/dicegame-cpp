@@ -120,6 +120,21 @@ public:
             }
         }
     }
+
+    /**
+     * Convert vector to array
+     */
+    template <typename T>
+    static T **convertVectorToArray(const std::vector<T *> vec)
+    {
+        int size = vec.size();
+        T **arr = new T *[size]; // Allocate memory for array of pointers
+
+        for (int i = 0; i < size; ++i)
+            arr[i] = vec[i];
+
+        return arr;
+    }
 };
 
 class Die
