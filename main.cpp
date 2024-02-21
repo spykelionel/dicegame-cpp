@@ -178,6 +178,7 @@ class DiceGame
 {
 private:
     Player *player;
+    vector<Player *> players;
     Human human;
     System sys;
     Die *die;
