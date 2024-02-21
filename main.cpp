@@ -39,6 +39,8 @@ public:
     Player()
     {
         points = 100;
+        // give it an
+        accumulatedPoints.assign({});
     }
     virtual void play()
     {
