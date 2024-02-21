@@ -12,6 +12,7 @@ class Human;
 class System;
 class DiceGame;
 class Die;
+class Util;
 
 struct CurrentPlayer
 {
@@ -92,6 +93,33 @@ private:
 
 public:
     System(string name = "Computer") : name(name), Player(name) {}
+};
+
+class Util
+{
+public:
+    // Function to determine the suffix for ordinal numbers
+    static string getOrdinalSuffix(int number)
+    {
+        if (number >= 11 && number <= 13)
+        {
+            return "th";
+        }
+        else
+        {
+            switch (number % 10)
+            {
+            case 1:
+                return "st";
+            case 2:
+                return "nd";
+            case 3:
+                return "rd";
+            default:
+                return "th";
+            }
+        }
+    }
 };
 
 class Die
