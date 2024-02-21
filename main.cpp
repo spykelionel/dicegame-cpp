@@ -290,11 +290,37 @@ public:
     {
         players.push_back((new Human(name)));
     }
+    void displayStats()
     {
-        for (auto p : player->getPlayers())
+        cout << endl;
+        cout << "Showing statistics for the latest game." << endl;
+        for (auto p : players)
         {
-            cout << "Turn: " << p.turn << "Name: " << p.name << " Points: " << p.points << endl;
+            cout << p->getName() << endl;
         }
+        cout << endl;
+    }
+    void displayStats(Player *player[], int size)
+    {
+        int totalPoints = 0;
+        cout << endl;
+        for (int i = 0; i < size; i++)
+        {
+            cout << "Displaying points for: " << player[i]->getName() << endl;
+            for (auto p : player[i]->getAccumumaltedPoints())
+            {
+                string suffix = Util::getOrdinalSuffix(i);
+                cout << suffix << p.turn << " Turn."
+                     << " Total points: " << p.points << endl;
+                totalPoints += p.points;
+            }
+
+            cout << "Total points: " << totalPoints << endl;
+            // reset totalPoints.
+            totalPoints = 0;
+        }
+        cout << endl;
+        // delete player;
     }
 
     ~DiceGame()
