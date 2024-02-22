@@ -188,6 +188,7 @@ public:
     // It points to nothing.
     DiceGame() : player(nullptr), die(nullptr)
     {
+        // players.assign({nullptr});
     }
     void init()
     {
@@ -255,9 +256,8 @@ public:
             }
             else
             {
-                cout << "Enter 1 to roll: ";
+                cout << "Enter 1 to roll, or 0 to quit: ";
                 cin >> choice;
-                die->roll(players.at(i % 2), turn);
             }
 
             if (choice == 0)
@@ -266,6 +266,10 @@ public:
                 Player **p = Util::convertVectorToArray(players);
                 displayStats(p, players.size());
                 delete[] p;
+            }
+            else
+            {
+                die->roll(players.at(i % 2), turn);
             }
             i++;
         }
@@ -283,6 +287,7 @@ public:
 
     void registerPlayer(string name)
     {
+        // set all existing players scores to default score.
         players.push_back((new Human(name)));
     }
 
@@ -324,6 +329,11 @@ public:
     {
         delete player;
         delete die;
+        for (auto p : players)
+        {
+            delete p;
+        }
+        // delete &players;
         // delete human;
         // delete sys;
     }
