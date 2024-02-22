@@ -355,5 +355,18 @@ int main()
     DiceGame game;
     game.init();
 
+    cout << "code by Ndi Lionel. Conceived by Eng. Derek.";
+    /**
+     * More Features (TODO):
+     * 1. Set max number of turns for each game, say MAX_TURN.
+     * 2. A player can only be allowed to play if they place a bet. use Player::bet(amount).
+     * Substract amount from total points. and update Player::points
+     * 3. If a player choses to quit when game is in progress, the amout of points used in betting is deducted, and player is kicked out of the game.
+     * 4. Upgrade the dispalyStats method to display individual player stats. i.e.
+     *  - Total games played
+     *  - Total points won
+     *  - Total Points left.
+     *  - etc.
+     */
     return 0;
 }
