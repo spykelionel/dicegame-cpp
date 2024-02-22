@@ -234,6 +234,7 @@ public:
         bool quit = false;
         int choice = 0, turn = 0, i = 0;
         cout << "Playing the game......" << endl;
+        cout << "Number of players: " << players.size() << endl;
         while (!quit)
         {
 
@@ -249,10 +250,10 @@ public:
             }
             if (i % 2 == 0)
                 turn++;
-            cout << "Player " << i % 2 + 1 << " " << players.at(i % 2)->getName() << ".\nRolling a die.." << endl;
-            if (players.at(i % 2)->getName() == "Computer")
+            cout << "Player " << i + 1 << " " << players.at(i)->getName() << ".\nRolling a die.." << endl;
+            if (players.at(i)->getName() == "Computer")
             {
-                die->roll(players.at(i % 2), turn);
+                die->roll(players.at(i), turn);
             }
             else
             {
@@ -269,9 +270,18 @@ public:
             }
             else
             {
-                die->roll(players.at(i % 2), turn);
+                die->roll(players.at(i), turn);
+                cout << "Index: " << i << endl;
+                // if (i != players.size() - 1)
+                // {
+                //     i++;
+                // }
+                // else
+                // {
+                //     i = 0;
+                // }
+                i = i != players.size() - 1 ? i++ : 0;
             }
-            i++;
         }
     }
 
