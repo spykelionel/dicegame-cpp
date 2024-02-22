@@ -248,7 +248,7 @@ public:
                 cout << "You are now playing with the computer." << endl;
                 players.push_back((new System()));
             }
-            if (i % 2 == 0)
+            if (i == 0)
                 turn++;
             cout << "Player " << i + 1 << " " << players.at(i)->getName() << ".\nRolling a die.." << endl;
             if (players.at(i)->getName() == "Computer")
@@ -272,15 +272,15 @@ public:
             {
                 die->roll(players.at(i), turn);
                 cout << "Index: " << i << endl;
-                // if (i != players.size() - 1)
-                // {
-                //     i++;
-                // }
-                // else
-                // {
-                //     i = 0;
-                // }
-                i = i != players.size() - 1 ? i++ : 0;
+                if (i != players.size() - 1)
+                {
+                    i++;
+                }
+                else
+                {
+                    i = 0;
+                }
+                // i = i != players.size() - 1 ? i++ : 0;
             }
         }
     }
