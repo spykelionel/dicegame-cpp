@@ -367,6 +367,7 @@ int main()
      *  - Total points won
      *  - Total Points left.
      *  - etc.
+     * 5. Star the repo. Good luck.
      */
     return 0;
 }
